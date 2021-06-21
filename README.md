@@ -7,6 +7,12 @@
 yarn add select2 jquery
 ```
 
+## deployed to Heroku
+
+- [treinalinux-mind-app-prod.herokuapp.com](https://treinalinux-mind-app-prod.herokuapp.com/)
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

@@ -12,6 +12,10 @@ class ContentsController < ApplicationController
     @content = Content.new
   end
 
+  def edit
+    @content = Content.find(params[:id])
+  end
+
   def create
     @content = current_user.contents.build(content_params)
 

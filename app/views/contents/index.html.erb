@@ -3,4 +3,5 @@
 <% @contents.each do |content| %>
   <h1>Title: <%= content.title %></h1>
   Description: <%= content.description %>
+  <%= link_to 'Edit', edit_content_path(content)  %>
 <% end %>

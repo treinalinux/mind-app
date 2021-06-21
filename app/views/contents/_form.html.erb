@@ -1,0 +1,27 @@
+
+<% if content.errors.any? %>
+  <p>Errors</p>
+
+  <ul>
+    <% content.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end%>
+  </ul>
+  <br>
+<% end %>
+
+<%= form_with(model: content, local: true) do |form| %>
+  <div class='field'>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class='field'>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class='actions'>
+    <%= form.submit %>
+  </div>
+<% end %>

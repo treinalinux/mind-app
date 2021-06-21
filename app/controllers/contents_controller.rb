@@ -25,6 +25,12 @@ class ContentsController < ApplicationController
 
   def update
     if @content.update(content_params)
+      tags = tags_params.map do |tag_name|
+        current_user.tags.where(name: tag_name).first_or_initialize
+      end
+
+      @content.tags = tags
+
       redirect_to contents_path, notice: 'Content successfully updated!'
     else
       render :edit
@@ -45,6 +51,10 @@ class ContentsController < ApplicationController
 
   def set_content
     @content = Content.find(params[:id])
+  end
+
+  def tags_params
+    params.require(:content).permit(tags: [])[:tags].reject(&:blank?)
   end
 
   def content_params

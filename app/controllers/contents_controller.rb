@@ -3,6 +3,7 @@
 # class ContentsController
 class ContentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_content, only: %i[show edit destroy update]
 
   def index
     @contents = current_user.contents
@@ -12,17 +13,17 @@ class ContentsController < ApplicationController
     @content = Content.new
   end
 
-  def show
-    @content = Content.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @content = Content.find(params[:id])
+  def edit; end
+
+  def destroy
+    @content.destroy
+
+    redirect_to contents_path, notice: 'Content successfully destroyed!'
   end
 
   def update
-    @content = Content.find(params[:id])
-
     if @content.update(content_params)
       redirect_to contents_path, notice: 'Content successfully updated!'
     else
@@ -41,6 +42,10 @@ class ContentsController < ApplicationController
   end
 
   private
+
+  def set_content
+    @content = Content.find(params[:id])
+  end
 
   def content_params
     params.require(:content).permit(:title, :description)
